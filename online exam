@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body bgcolor="sky blue">
+<h2>ONLINE EXAM</h2>
+<h3>Time Left: <span id="timer">01:00</span></h3>
+<form id="examForm">
+<p>Register Number:
+<input type="text" id="reg" required><br></p>
+<h3>Q1.JavaScript is a ______ language.</h3>
+<input type="radio" name="q1" value="Programming">Programming<br>
+<input type="radio" name="q1" value="Scripting">Scripting<br>
+<input type="radio" name="q1" value="Markup">Markup<br>
+<h3>Q2.Who developed JavaScript?</h3>
+<input type="radio" name="q2" value="James Gosling">James Gosling<br>
+<input type="radio" name="q2" value="Dennis Ritchie">Dennis Ritchie<br>
+<input type="radio" name="q2" value="Brendan Eich">Brendan Eich<br>
+<button onclick="submitExam(event)">Submit</button>
+<button type="reset">Reset</button>
+</form>
+<h3 id="result"></h3>
+<script>
+let answers={q1:"Scripting",q2:"Brendan Eich"};
+function submitExam(){
+  let score=0;
+  if(!reg.value) return alert("Please enter register number");
+  for(let q in answers){
+    let pick=document.querySelector(`[name="${q}"]:checked`);
+    if(pick && pick.value==answers[q]) score++;
+  }
+  alert("Your Score: "+score+"/2");
+  location.reload();
+}
+let t=60,myTimer=setInterval(()=>{
+  timer.textContent=("0"+(t/60|0)).slice(-2)+":"+("0"+t%60).slice(-2);
+  if(t--<=0) clearInterval(myTimer),alert("Time's up!"),submitExam();
+},1000);
+</script>
+</body>
+</html>
