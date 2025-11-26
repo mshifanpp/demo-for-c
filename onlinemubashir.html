@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body bgcolor="LIGHTGREEN">
+<h2>ONLINE EXAM FOR 10 QUESTIONS</h2>
+<h3>Time : <span id="timer">01:00</span></h3>
+
+<form id="examForm">
+<p>Reg NO:
+<input type="text" id="reg" required><br></p>
+
+<h2>1.what is the full form of RAM?</h2>
+<input type="radio" name="q1" value="a">RANDOM ADDRESS MEMORY<br>
+<input type="radio" name="q1" value="b">RANDOM ACCESS MEMORY<br>
+
+<h2>2.which part is brain of computer?</h2>
+<input type="radio" name="q2" value="a">CPU<br>
+<input type="radio" name="q2" value="b">RAM<br>
+
+<h2>3.WHAT IS THE SUM OF 2+2?</h2>
+<input type="radio" name="q3" value="a">4<br>
+<input type="radio" name="q3" value="b">6<br>
+
+<h2>4.what are the input devices given below?</h2>
+<input type="radio" name="q4" value="a">keyboard<br>
+<input type="radio" name="q4" value="b">monitor<br>
+
+<h2>5.WHAT is the square root of 625?</h2>
+<input type="radio" name="q5" value="a">25<br>
+<input type="radio" name="q5" value="b">35<br>
+
+<h2>6.WHAT 1 byte in bit?</h2>
+<input type="radio" name="q6" value="a">8<br>
+<input type="radio" name="q6" value="b">4<br>
+
+<h2>7.which is main memory?</h2>
+<input type="radio" name="q7" value="a">RAM<br>
+<input type="radio" name="q7" value="b">HDD<br>
+
+<h2>8.which is secondary memory?</h2>
+<input type="radio" name="q8" value="a">SSD<br>
+<input type="radio" name="q8" value="b">ROM<br>
+
+<h2>9.FULL FORM OF LAN?</h2>
+<input type="radio" name="q9" value="a">LOCAL AREA NETWORK<br>
+<input type="radio" name="q9" value="b">LOCAL ARRAY NETWORK<br>
+
+<h2>10.FULL FORM OF WWW?</h2>
+<input type="radio" name="q10" value="a">WORLD WIDE WEB<br>
+<input type="radio" name="q10" value="b">WORLD WIDE WEBINAE<br>
+
+<button type="button" onclick="submitExam()">Submit</button>
+<button type="reset">Reset</button>
+</form>
+
+<h3 id="result"></h3>
+
+<script>
+let answers = {
+    q1:"a", q2:"a", q3:"a", q4:"a", q5:"a",
+    q6:"a", q7:"a", q8:"a", q9:"a", q10:"a"
+};
+
+function submitExam(){
+    let score = 0;
+    if (!reg.value) return alert("Please enter register number");
+
+    for (let q in answers) {
+        let pick = document.querySelector(`[name="${q}"]:checked`);
+        if (pick && pick.value == answers[q]) {
+            score++;
+        }
+    }
+
+    alert("Your Score: " + score + "/10");
+    location.reload();
+}
+
+let t = 60;
+let myTimer = setInterval(() => {
+    timer.textContent = ("0" + (t / 60 | 0)).slice(-2) + ":" + ("0" + t % 60).slice(-2);
+    if (t-- <= 0) {
+        clearInterval(myTimer);
+        alert("Time's up!");
+        submitExam();
+    }
+}, 1000);
+</script>
+
+</body>
+</html>
+
