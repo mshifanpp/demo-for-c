@@ -1,0 +1,92 @@
+mysql> delimiter //
+mysql> select * from members;
+    -> //
++------+--------+
+| reg  | name   |
++------+--------+
+|  101 | adhrsh |
+|  102 | sidhu  |
+|  103 | ihsan  |
+|  104 | george |
+|  106 | sidhu  |
+|  105 | ihsan  |
++------+--------+
+6 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure my_fun()
+    -> select *from members;
+    -> //
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> call my_fun() //
++------+--------+
+| reg  | name   |
++------+--------+
+|  101 | adhrsh |
+|  102 | sidhu  |
+|  103 | ihsan  |
+|  104 | george |
+|  106 | sidhu  |
+|  105 | ihsan  |
++------+--------+
+6 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create procedure my_fun1() begin select *from members; select reg from members; select name from members; end //
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> call my_fun1() //
++------+--------+
+| reg  | name   |
++------+--------+
+|  101 | adhrsh |
+|  102 | sidhu  |
+|  103 | ihsan  |
+|  104 | george |
+|  106 | sidhu  |
+|  105 | ihsan  |
++------+--------+
+6 rows in set (0.00 sec)
+
++------+
+| reg  |
++------+
+|  101 |
+|  102 |
+|  103 |
+|  104 |
+|  106 |
+|  105 |
++------+
+6 rows in set (0.00 sec)
+
++--------+
+| name   |
++--------+
+| adhrsh |
+| sidhu  |
+| ihsan  |
+| george |
+| sidhu  |
+| ihsan  |
++--------+
+6 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create procedure naam() select * from members where name like 'a%' //
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> call naam() //
++------+--------+
+| reg  | name   |
++------+--------+
+|  101 | adhrsh |
++------+--------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
